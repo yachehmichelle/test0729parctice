@@ -1,0 +1,11 @@
+@charset "UTF-8";
+body{
+	margin:auto;
+	text-align: center;
+}
+form{
+	margin:auto;
+}
+h2{
+	color:red;
+}
