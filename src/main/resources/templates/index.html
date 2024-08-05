@@ -2,20 +2,19 @@
 <html lang="en" xmlns:th="https://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-<link rel="stylesheet" href="style/login.css" />
+<title>login</title>
+<link rel="stylesheet" href="style/login.css"/>
 </head>
 <body>
 	<h1>Welcome</h1>
-	<form method="POST" action="/project/login">
+	<form method="POST" th:action="@{/login}">
 		<table style="margin: auto; text-align: center;">
 			<tr>
-				<td>帳號 <input type="text" name="account" th:text="${account}"></td>
+				<td>帳號 <input type="text" name="account" required></td>
 			</tr>
 			<br>
 			<tr>
-				<td>密碼 <input type="password" name="password"
-					th:text="${password}"></td>
+				<td>密碼 <input type="password" name="password" required></td>
 			</tr>
 			<br>
 			<tr>
@@ -23,9 +22,7 @@
 			</tr>
 		</table>
 	</form>
-	<h2 th:text="${error}"></h2>
-	<!--  <a href="/project/register">
-		<button>註冊</button>
-	</a>-->
+	<h2 th:text="${session.error}"></h2></h2>
+	<a href="newlogin">新登入頁面<!-- <button></button> --></a>
 </body>
 </html>
