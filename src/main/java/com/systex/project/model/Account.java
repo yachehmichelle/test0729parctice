@@ -11,7 +11,7 @@ import jakarta.persistence.Id;
 @Entity
 public class Account {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)//batch無法使用 
 	private Integer id;
 	private String name;
 	private String account;
