@@ -14,15 +14,4 @@ h1{
 h2{
 	color:red;
 }
-div.input{
-	width:30%;
-	text-align:center;
-	margin:auto;
-}
-span.input-group-text{
-	background-color: #d2e1ee;
-}
 
-div #title{
-	margin-top:10px;
-}
