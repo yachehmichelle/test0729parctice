@@ -18,10 +18,13 @@
 </head>
 <body>
 	<h1>
-		歡迎 <div><span th:text="${session.account.get().getName}"></div>
-		 
-	</h1>	
-		<button id="logout" type="button" class="btn btn-outline-primary"
+		歡迎
+		<div th:object="${session.account.get()}">
+			<div th:text="*{getName}">
+		</div>
+
+	</h1>
+	<button id="logout" type="button" class="btn btn-outline-secondary"
 		style="margin-top: 30px; width: 30%;">登出</button>
 </body>
 </html>
