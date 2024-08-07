@@ -59,7 +59,7 @@ public class loginFilter extends OncePerRequestFilter {
 				return;
 			}
 			if (!accountService.checkAccoumt(account, password)) {// 如果帳號或是密碼不正確
-				request.getSession().setAttribute("error", "帳號或是密碼錯誤");
+				request.getSession().setAttribute("error", "帳號或是密碼錯誤!");
 				response.sendRedirect("/project");// 原始登入頁面
 				return;
 			}
@@ -91,7 +91,7 @@ public class loginFilter extends OncePerRequestFilter {
 		        response.setCharacterEncoding("UTF-8");//設定回傳格式
 				Map<String, Object> result = new HashMap<>();
 				result.put("result","error");
-				result.put("error","帳號或密碼錯誤");//回給前端ajax訊息
+				result.put("error","帳號或密碼錯誤!");//回給前端ajax訊息
 		        response.getWriter().write(new ObjectMapper().writeValueAsString(result));
 				return;
 
