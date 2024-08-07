@@ -2,8 +2,8 @@
 <html lang="en" xmlns:th="https://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-
-<title>new log page</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>new login page</title>
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"
 	integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
 	crossorigin="anonymous"></script>
@@ -17,28 +17,33 @@
 </script>
 <script src="javascript/newlogin.js"></script>
 </head>
-<body style="background-color: #F3F7FC;">
-	<h1>Welcome! Please sign in</h1>
-	<div class="input">
-		<div id="title" class="input-group input-group-lg">
-			<span class="input-group-text" id="inputGroup-sizing-lg" name=account>帳號</span>
-			<input id="account" type="text" class="form-control"
-				aria-label="Sizing example input"
-				aria-describedby="inputGroup-sizing-lg" placeholder="請輸入帳號">
+<body>
+	<main >
+		<div>
+			<svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16 ">
+			  <path
+					d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6" /> <!-- 圖形形狀座標點 -->
+			</svg>
+			<h1>Please sign in</h1>
 		</div>
+		<div class="input">
+			<div
+				class="input-group input-group-default mb-3 shadow bg-body rounded">
+				<span class="input-group-text">帳號</span> 
+				<input id="account" th:value="${account}"
+					type="text" class="form-control" aria-label="帳號"placeholder="請輸入帳號">
+
+			</div>
 
 
-		<div id="title" class="input-group input-group-lg">
-			<span class="input-group-text" id="inputGroup-sizing-lg"
-				name=password>密碼</span> 
-				<input id="password" type="password"
-				class="form-control" aria-label="Sizing example input"
-				aria-describedby="inputGroup-sizing-lg" placeholder="請輸入密碼">
+			<div class="input-group input-group-default shadow mb-3 bg-body rounded">
+				<span class="input-group-text" id="inputGroup-sizing-default">密碼</span>
+				<input id="password" type="password" th:value="${account}" class="form-control"
+					aria-label="密碼" placeholder="請輸入密碼">
+			</div>
+
+			<button id="login" type="button" class="btn btn-outline-secondary mt-3">登入</button>
 		</div>
-	</div>
-
-	<button id="login" type="button" class="btn btn-outline-primary"
-		style="margin-top: 30px; width: 30%;">登入</button>
-
+	</main>
 </body>
 </html>
