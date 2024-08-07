@@ -62,11 +62,6 @@ public class AccountController {
 		return ResponseEntity.ok(result);
 	}
 
-	@PostMapping("/logout")
-	public String logout() {
-		return "redirect:/";
-	}
-
 	@PostMapping("/newlogout")
 	public ResponseEntity<Map<String, Object>> newlogout(HttpServletRequest request, HttpServletResponse response) {
 		request.getSession().invalidate();

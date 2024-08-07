@@ -29,4 +29,27 @@ $(document).ready(function() {
 		});
 
 	});
+	
+	
+	$('#logout').click(function() {
+			$.ajax({
+				type: "POST",
+				url: '/project/logout',
+				success: function(response) {
+					if (response.result === 'success') {
+						window.location.href = response.requestPath;// 登入後重新導向
+					} else {
+						alert(response.error);
+					}
+				},
+				error: function(response) {
+					alert("error");
+				}
+			});
+
+		});
 });
+	
+
+
+

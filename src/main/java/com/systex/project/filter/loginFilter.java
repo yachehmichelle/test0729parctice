@@ -36,10 +36,16 @@ public class loginFilter extends OncePerRequestFilter {
 		}
 
 		if (requestPath.contains("/logout")) {// 登出後刪除所有session
-			request.getSession().invalidate();
-			filterChain.doFilter(request, response);
-			return;
-		}
+		request.getSession().invalidate();
+		response.setContentType("application/json"); //設定回傳格式
+        response.setCharacterEncoding("UTF-8");//設定回傳格式
+		Map<String, Object> result = new HashMap<>();
+		result.put("result","success");
+		result.put("requestPath","/project");//回給前端ajax訊息
+        response.getWriter().write(new ObjectMapper().writeValueAsString(result));
+		
+		return;
+	}
 
 		if (requestPath.contains("/login")) {// login走這裡
 			String account = request.getParameter("account");
