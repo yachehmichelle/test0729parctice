@@ -6,8 +6,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
 import org.springframework.web.filter.OncePerRequestFilter;
 
@@ -20,11 +18,16 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-@Component
-public class loginFilter extends OncePerRequestFilter {
-	@Autowired
-	AccountService accountService;
 
+public class LoginFilter extends OncePerRequestFilter {
+
+	private AccountService accountService;
+	
+	 public LoginFilter(AccountService accountService) {//見FilterConfig
+		this.accountService=accountService;
+	}
+	
+	 
 	@Override
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
 			throws ServletException, IOException {
@@ -34,7 +37,7 @@ public class loginFilter extends OncePerRequestFilter {
 			filterChain.doFilter(request, response);
 			return;
 		}
-
+	
 		if (requestPath.contains("/logout")) {// 登出後刪除所有session
 			request.getSession().invalidate();
 			response.setContentType("application/json"); // 設定回傳格式
