@@ -67,9 +67,8 @@ public class loginFilter extends OncePerRequestFilter {
 			// 抓出account和password
 			String account = inputaccount.getAccount();
 			String password = inputaccount.getPassword();
-			request.setAttribute("account", account);
-			request.setAttribute("password", password);
-
+			request.setAttribute("account", account);//傳給controller;
+			
 			if (!accountService.checkAccoumt(account, password)) {// 如果帳號或是密碼不正確
 				response.setContentType("application/json"); // 設定回傳格式
 				response.setCharacterEncoding("UTF-8");// 設定回傳格式

@@ -57,13 +57,4 @@ public class AccountController {
 		return ResponseEntity.ok(result);
 	}
 
-	@PostMapping("/newlogout")
-	public ResponseEntity<Map<String, Object>> newlogout(HttpServletRequest request, HttpServletResponse response) {
-		request.getSession().invalidate();
-		Map<String, Object> result = new HashMap<>();
-		result.put("result", "登出成功!");
-		result.put("requestPath", "/project/newlogin");
-		return ResponseEntity.ok(result);
-	}
-
 }
