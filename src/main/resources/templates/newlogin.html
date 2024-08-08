@@ -41,7 +41,8 @@
 				<input id="password" type="password" th:value="${account}" class="form-control"
 					aria-label="密碼" placeholder="請輸入密碼">
 			</div>
-
+			
+			<div id="error" th:text="${error}" class="fs-5 fw-bolder text-danger "></div>
 			<button id="login" type="button" class="btn btn-outline-secondary mt-3">登入</button>
 		</div>
 	</main>

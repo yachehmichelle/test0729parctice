@@ -4,12 +4,12 @@ $(document).ready(function() {
 		let account = $('#account').val();
 		let password = $('#password').val();
 		if (account == '' || password == '') {
-			alert('請輸入帳號或密碼!');
+			$('#error').text("請輸入帳號或密碼!");
 			return;
 		}
 		$.ajax({
 			type: "POST",
-			url: '/project/newlogin',
+			url: '/project/newlogin', 
 			data: JSON.stringify({
 				account: account,
 				password: password
@@ -20,7 +20,7 @@ $(document).ready(function() {
 				if (response.result === 'success') {
 					window.location.href = response.requestPath;// 登入後重新導向
 				} else {
-					alert(response.error);
+					$('#error').text(response.error);
 				}
 			},
 			error: function() {
