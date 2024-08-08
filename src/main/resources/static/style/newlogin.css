@@ -1,20 +1,21 @@
 @charset "UTF-8";
 
 body {
-	
+	height:100%;
 	margin-top: 150px;
 	text-align: center;
-	background-color: #EFFAFF;
-	
+	background-color:#f4fcff
 }
 
 div.input {
-	width: 50%;
+	width: 65%;
 	margin: auto;
 }
 
-main{
-	width: 900px; margin: auto;
+.card{
+	width: 600px; margin: auto;
+	background-color:#e8ecf4;
+	
 }
 
 span.input-group-text {
