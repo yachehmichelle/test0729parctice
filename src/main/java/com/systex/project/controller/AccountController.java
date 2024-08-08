@@ -23,8 +23,7 @@ import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class AccountController {
-	@Autowired
-	private AccountService accountService;
+
 	@Autowired
 	private AccountRepository accountRepository;
 

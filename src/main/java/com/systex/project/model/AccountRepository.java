@@ -9,6 +9,6 @@ import org.springframework.data.jpa.repository.Query;
 
 @Repository
 public interface AccountRepository extends JpaRepository <Account, Integer>  {
-	@Query("SELECT a FROM Account a WHERE a.account = :account")
+	
     Optional<Account> findByAccount(String account);
 }
