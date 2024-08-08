@@ -15,8 +15,6 @@ import com.systex.project.model.AccountRepository;
 
 import jakarta.servlet.http.HttpServletRequest;
 
-
-
 @Controller
 public class AccountController {
 
