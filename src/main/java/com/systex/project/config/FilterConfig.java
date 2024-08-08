@@ -13,7 +13,7 @@ public class FilterConfig {
 	public FilterRegistrationBean<loginFilter> logProcessFilter() {
 		FilterRegistrationBean<loginFilter> bean = new FilterRegistrationBean<>();
 		bean.setFilter(new loginFilter());
-		bean.addUrlPatterns("/project/login");
+		bean.addUrlPatterns("/project/*");
 		bean.setOrder(1);
 		return bean;
 
