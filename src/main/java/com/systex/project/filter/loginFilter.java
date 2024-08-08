@@ -1,7 +1,6 @@
 package com.systex.project.filter;
 
 import java.io.BufferedReader;
-import java.io.Console;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
