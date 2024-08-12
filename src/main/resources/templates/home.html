@@ -22,6 +22,7 @@
 		<div th:object="${session.account.get()}">
 			<div th:text="*{getName}"></div>
 	</h1>
+	<p style="color:red; font-size: large;" th:text="${session.remind}"></p>
 	<button id="logout" type="button" class="btn btn-outline-secondary"
 		style="margin-top: 30px; width: 30%;">登出</button>
 </body>

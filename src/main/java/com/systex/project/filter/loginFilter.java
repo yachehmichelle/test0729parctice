@@ -26,10 +26,11 @@ public class LoginFilter extends OncePerRequestFilter {
 	}
 
 	private boolean islogin(HttpServletRequest request) {
-		if (request.getSession() == null) {
+		if (request.getSession() == null) {// 沒有登入session都會是false
 			return false;
 		}
-		return request.getSession().getAttribute("islogin") != null;
+		return request.getSession().getAttribute("account") != null;// 有登入account才會有值
+
 	}
 
 	@Override
@@ -50,22 +51,27 @@ public class LoginFilter extends OncePerRequestFilter {
 			response.getWriter().write(new ObjectMapper().writeValueAsString(result));
 			return;
 		}
-		
-		if (requestPath.endsWith(".css") || requestPath.endsWith(".js")){
+
+		if (requestPath.endsWith(".css") || requestPath.endsWith(".js")) {
 			filterChain.doFilter(request, response);
 			return;
 		}
-
+		String method = request.getMethod();
 		if (islogin) {// 有登入
+			if ("GET".equals(method) & ("/newlogin".equals(servletPath) || "/project/".equals(requestPath))) {
+				request.getSession().setAttribute("remind", "*如果是已登入的狀態下要回到登入頁面 要先登出!!!");
+				response.sendRedirect("/project/home");//已經登入的狀態下要進登入頁會自動導向登入後的首頁
+				return;
+			}
 			filterChain.doFilter(request, response);
 			return;
-		}else {//沒有登入
-			String method = request.getMethod();
+		} else {// 沒有登入
+
 			if (("/project/".equals(requestPath) || "/newlogin".equals(servletPath)) && "GET".equals(method)) {// 判斷是否為登入頁面
 				filterChain.doFilter(request, response);
 				return;
 			}
-			
+
 			if ("POST".equals(method)) {
 				if ("/login".equals(servletPath)) {// 未登入舊的登入頁面
 					String account = request.getParameter("account");
@@ -74,12 +80,11 @@ public class LoginFilter extends OncePerRequestFilter {
 						request.getSession().setAttribute("error", "帳號或是密碼錯誤!");
 						response.sendRedirect("/project/");// 原始登入頁面
 						return;
-					}else {
-						request.getSession().setAttribute("islogin",true);
+					} else {
 						filterChain.doFilter(request, response);
 						return;
 					}
-					
+
 				}
 
 				if ("/newlogin".equals(servletPath)) {// newlogin走這裡
@@ -102,18 +107,17 @@ public class LoginFilter extends OncePerRequestFilter {
 						response.getWriter().write(objectmapper.writeValueAsString(result));
 						return;
 
-					}else {
-						request.getSession().setAttribute("islogin",true);
+					} else {
 						filterChain.doFilter(request, response);
 						return;
 					}
 				}
 			}
+			request.getSession().setAttribute("error", "請先登入");
 			response.sendRedirect("/project/");
-				return;
+			return;
 		}
 
-	
 	}
 
 }
