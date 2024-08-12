@@ -46,7 +46,7 @@ public class LoginFilter extends OncePerRequestFilter {
 			response.setCharacterEncoding("UTF-8");// 設定回傳格式
 			Map<String, Object> result = new HashMap<>();
 			result.put("result", "success");
-			result.put("requestPath", "/project");// 回給前端ajax訊息
+			result.put("requestPath", "/project/");// 回給前端ajax訊息
 			response.getWriter().write(new ObjectMapper().writeValueAsString(result));
 			return;
 		}
@@ -59,9 +59,9 @@ public class LoginFilter extends OncePerRequestFilter {
 		if (islogin) {// 有登入
 			filterChain.doFilter(request, response);
 			return;
-		}else {
+		}else {//沒有登入
 			String method = request.getMethod();
-			if ("/project/".equals(requestPath) || "/newlogin".equals(servletPath) && "GET".equals(method)) {// 無登入，但是判斷是否為登入頁面
+			if (("/project/".equals(requestPath) || "/newlogin".equals(servletPath)) && "GET".equals(method)) {// 判斷是否為登入頁面
 				filterChain.doFilter(request, response);
 				return;
 			}
@@ -72,7 +72,7 @@ public class LoginFilter extends OncePerRequestFilter {
 					String password = request.getParameter("password");
 					if (!accountService.checkAccoumt(account, password)) {// 如果帳號或是密碼不正確
 						request.getSession().setAttribute("error", "帳號或是密碼錯誤!");
-						response.sendRedirect("/project");// 原始登入頁面
+						response.sendRedirect("/project/");// 原始登入頁面
 						return;
 					}else {
 						request.getSession().setAttribute("islogin",true);
@@ -109,7 +109,7 @@ public class LoginFilter extends OncePerRequestFilter {
 					}
 				}
 			}
-			response.sendRedirect("/project");
+			response.sendRedirect("/project/");
 				return;
 		}
 
